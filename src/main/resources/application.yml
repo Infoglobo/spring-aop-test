@@ -1,0 +1,7 @@
+spring:
+    application:
+        name: spring-aop-test
+    main:
+        banner-mode: "off"
+    thymeleaf:
+        cache: false
