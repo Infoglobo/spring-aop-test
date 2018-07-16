@@ -1,4 +1,6 @@
-open module br.com.globo {
+open module globo.editoraglobo.springaoptest {
+
+    requires java.sql;
 
     requires spring.boot.autoconfigure;
     requires spring.boot;

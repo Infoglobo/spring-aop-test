@@ -37,6 +37,20 @@ Depois só acessar:
 
     http://localhost:8080/sample
 
+### Rode como um módulo
+
+Para rodar usando 100% [JPMS](https://en.wikipedia.org/wiki/Java_Platform_Module_System) execute o comando abaixo:
+
+    java --add-modules java.xml.bind --upgrade-module-path=target/modules --module globo.editoraglobo.springaoptest
+
+Se você parar o serviço provavelmente receberá o seguinte erro:
+
+    Caused by: java.lang.reflect.InaccessibleObjectException: Unable to make field static final java.util.concurrent.ConcurrentMap java.io.ObjectStreamClass$Caches.localDescs accessible: module java.base does not "opens java.io" to module tomcat.embed.core
+
+Uma maneira de resolver isso (detalhes [aqui](https://stackoverflow.com/a/41265267)) é rodando com o comando abaixo:
+
+    java --add-modules java.xml.bind --add-opens java.base/java.io=tomcat.embed.core --upgrade-module-path=target/modules --module globo.editoraglobo.springaoptest
+
 ## Referências
 
 Saiba mais nos links:
