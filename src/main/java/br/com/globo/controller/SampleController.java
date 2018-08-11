@@ -1,18 +1,25 @@
 package br.com.globo.controller;
 
+import br.com.globo.components.AppConstants;
 import br.com.globo.service.SampleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 import static br.com.globo.components.AppConstants.HONEST_SAMPLE_ATTRIBUTE;
 import static br.com.globo.components.AppConstants.HONEST_SAMPLE_HEADER;
-import static br.com.globo.components.UrlBuilder.REQUEST_PATH_SAMPLE;
-import static br.com.globo.components.UrlBuilder.VIEW_PATH_SAMPLE;
+import static br.com.globo.components.UrlBuilder.*;
 
 
 @Controller
@@ -34,5 +41,31 @@ public class SampleController {
         view.addObject(HONEST_SAMPLE_ATTRIBUTE, honestSampleHeader);
 
         return view;
+    }
+
+    @GetMapping(REQUEST_PATH_JASMINE)
+    public String jasmine() {
+
+        return VIEW_PATH_JASMINE;
+    }
+
+    @PostMapping(path = REQUEST_PATH_JASMINE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> jasmine(@RequestParam(AppConstants.HONEST_JASMINE_AJAX_PARAMETER) Optional<String> sample) throws InterruptedException {
+
+        var maybeEmptySample = sample.map(s -> s.isEmpty()? null : s);
+
+        LOGGER.info("Looking for {}", maybeEmptySample);
+
+        TimeUnit.SECONDS.sleep(2);
+
+        return ResponseEntity.ok(new Object() {
+
+            String message = "Pois é! Você estava procurando por " + maybeEmptySample.orElse("NADA") + " de fato!";
+
+            public String getMessage() {
+
+                return message;
+            }
+        });
     }
 }

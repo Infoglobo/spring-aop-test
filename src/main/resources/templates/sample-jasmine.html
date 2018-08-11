@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Jasmine Honesto</title>
+    <meta charset="utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+</head>
+<body>
+
+<h1>Como usar Jasmine honesto!</h1>
+
+<form onsubmit="sampleJasmineController.search(event)">
+    <label>Procure seu exemplo</label>
+    <input name="sampleJasmine" type="text" onfocus="sampleJasmineController.cleanMessage(event)" />
+    <input type="submit" />
+</form>
+
+<p class="message" style="display: none"></p>
+
+<script th:src="@{/js/services/HttpService.js}" type="text/javascript"></script>
+<script th:src="@{/js/services/SampleJasmineService.js}" type="text/javascript"></script>
+<script th:src="@{/js/controllers/SampleJasmineController.js}" type="text/javascript"></script>
+<script>
+    var sampleJasmineController = new SampleJasmineController('[[${@urlBuilder.REQUEST_PATH_JASMINE}]]');
+</script>
+
+</body>
+</html>
