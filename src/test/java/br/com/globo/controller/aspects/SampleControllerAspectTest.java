@@ -41,7 +41,7 @@ public class SampleControllerAspectTest {
 
     @Test
     @DisplayName("Deve codificar o header como UTF-8 para ficar legível")
-    public void deveCodificarHeader() throws Throwable {
+    public void a() throws Throwable {
 
         ResultActions resultActions = mockMvc.perform(get(REQUEST_PATH_SAMPLE)
             .header(HONEST_SAMPLE_HEADER, honestSampleHeaderWithStandardEncoding))
