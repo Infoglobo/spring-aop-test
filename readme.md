@@ -4,11 +4,16 @@ Quer aprender um pouco sobre Spring AOP? Leia nosso artigo no Medium e teste com
 
 - [Altere argumentos recebidos na controladora: Proxy nunca foi tão simples com Spring AOP](https://medium.com/editora-globo/altere-argumentos-recebidos-na-controladora-cf0c7fb7f6ad)
 
+Além disso, fizemos um outro artigo explicando como aplicar teste unitário em JavaScript em seu projeto Java. Saiba mais no link abaixo:
+
+- [Testes unitários para JavaScript em seu projeto Spring Boot](https://medium.com/editora-globo/testes-unit%C3%A1rios-para-javascript-em-seu-projeto-spring-boot-da1707d703)
+
 # Stack utilizada
 
 - Java 10 com module path
-- Spring Boot 2.1.0.BUILD-SNAPSHOT
+- Spring Boot 2.1.0.M1
 - JUnit 5 com AssertJ e Mockito
+- Jasmine para o front-end com [jasmine-maven-plugin](https://github.com/searls/jasmine-maven-plugin)
 - Maven
 
 ## Testando o projeto
