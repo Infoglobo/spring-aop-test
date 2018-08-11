@@ -17,9 +17,12 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
+import static br.com.globo.components.AppConstants.HONEST_JASMINE_AJAX_PARAMETER;
 import static br.com.globo.components.AppConstants.HONEST_SAMPLE_ATTRIBUTE;
 import static br.com.globo.components.AppConstants.HONEST_SAMPLE_HEADER;
 import static br.com.globo.components.UrlBuilder.*;
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+import static org.springframework.http.ResponseEntity.ok;
 
 
 @Controller
@@ -49,8 +52,8 @@ public class SampleController {
         return VIEW_PATH_JASMINE;
     }
 
-    @PostMapping(path = REQUEST_PATH_JASMINE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> jasmine(@RequestParam(AppConstants.HONEST_JASMINE_AJAX_PARAMETER) Optional<String> sample) throws InterruptedException {
+    @PostMapping(path = REQUEST_PATH_JASMINE, produces = APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> jasmine(@RequestParam(HONEST_JASMINE_AJAX_PARAMETER) Optional<String> sample) throws InterruptedException {
 
         var maybeEmptySample = sample.map(s -> s.isEmpty()? null : s);
 
@@ -58,7 +61,7 @@ public class SampleController {
 
         TimeUnit.SECONDS.sleep(2);
 
-        return ResponseEntity.ok(new Object() {
+        return ok(new Object() {
 
             String message = "Pois é! Você estava procurando por " + maybeEmptySample.orElse("NADA") + " de fato!";
 
